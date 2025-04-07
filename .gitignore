@@ -1,0 +1,32 @@
+# ---------------------
+# FRONTEND - React (Vite)
+# ---------------------
+dashboard-frontend/node_modules/
+dashboard-frontend/dist/
+dashboard-frontend/.env
+
+# ---------------------
+# BACKEND - Python (Flask)
+# ---------------------
+api-vendas/__pycache__/
+api-vendas/venv/
+api-vendas/*.pyc
+api-vendas/.env
+
+api-cotacao/__pycache__/
+api-cotacao/venv/
+api-cotacao/*.pyc
+api-cotacao/.env
+
+# ---------------------
+# Docker & Logs
+# ---------------------
+*.log
+*.pid
+
+# ---------------------
+# Editor & SO
+# ---------------------
+.vscode/
+.DS_Store
+Thumbs.db

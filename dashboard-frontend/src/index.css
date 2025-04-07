@@ -1,0 +1,119 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* Container geral */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+  background-color: #353a72;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Conteúdo principal */
+.content {
+  display: flex;
+  flex: 1;
+  padding: 30px;
+  gap: 30px;
+}
+
+/* Blocos */
+.box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  flex: 1;
+}
+
+/* Cotação */
+.cotacao h2 {
+  margin-bottom: 10px;
+  color: #353a72;
+}
+
+.valor-dolar {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.converter label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.converter input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.converter button {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background-color: #353a72;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.converter button:hover {
+  background-color: #2a2f5c;
+}
+
+/* Tabela */
+.tabela h2 {
+  margin-bottom: 16px;
+  color: #353a72;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #e5e9f0;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody tr:hover {
+  background-color: #f2f4f7;
+}
