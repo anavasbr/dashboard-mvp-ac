@@ -6,7 +6,6 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-
 # Conexão com o banco de dados
 db = mysql.connector.connect(
     host="localhost",
@@ -14,15 +13,13 @@ db = mysql.connector.connect(
     password="Ana@1234",  # ou a senha que você usou
     database="vendas_db"
 )
-
 cursor = db.cursor()
-
-
 
 @app.route("/")
 def home():
     return "API de Vendas conectada ao MySQL com sucesso!"
 
+# ROTA GET - Listar clientes
 @app.route("/clientes", methods=["GET"])
 def listar_clientes():
     cursor.execute("SELECT id, nome, cidade, total_compras FROM clientes")
@@ -38,14 +35,44 @@ def listar_clientes():
     ]
     return jsonify(clientes)
 
+# ROTA POST - Adicionar cliente
 @app.route("/clientes", methods=["POST"])
 def adicionar_cliente():
     data = request.get_json()
     nome = data.get("nome")
-    cursor.execute("INSERT INTO clientes (nome) VALUES (%s)", (nome,))
+    cidade = data.get("cidade")
+    total_compras = data.get("total_compras")
+
+    cursor.execute(
+        "INSERT INTO clientes (nome, cidade, total_compras) VALUES (%s, %s, %s)",
+        (nome, cidade, total_compras)
+    )
     db.commit()
     return jsonify({"mensagem": "Cliente adicionado com sucesso"}), 201
 
+# ROTA PUT - Editar cliente
+@app.route("/clientes/<int:id>", methods=["PUT"])
+def editar_cliente(id):
+    data = request.get_json()
+    nome = data.get("nome")
+    cidade = data.get("cidade")
+    total_compras = data.get("total_compras")
+
+    cursor.execute(
+        "UPDATE clientes SET nome=%s, cidade=%s, total_compras=%s WHERE id=%s",
+        (nome, cidade, total_compras, id)
+    )
+    db.commit()
+    return jsonify({"mensagem": "Cliente atualizado com sucesso"})
+
+# ROTA DELETE - Excluir cliente
+@app.route("/clientes/<int:id>", methods=["DELETE"])
+def deletar_cliente(id):
+    cursor.execute("DELETE FROM clientes WHERE id = %s", (id,))
+    db.commit()
+    return jsonify({"mensagem": "Cliente excluído com sucesso"})
+
+# ROTA GET - Cotação do dólar (via API externa)
 @app.route("/cotacao-dolar", methods=["GET"])
 def pegar_cotacao():
     try:
